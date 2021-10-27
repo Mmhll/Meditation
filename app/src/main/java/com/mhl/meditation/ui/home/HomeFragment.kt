@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mhl.meditation.R
 import com.mhl.meditation.databinding.FragmentHomeBinding
 import com.mhl.meditation.recadapters.FeelRecycler
+import com.mhl.meditation.recadapters.StateRecycler
 import com.mhl.meditation.recadapters.feel
+import com.mhl.meditation.recadapters.quotes
 import com.mhl.meditation.retroshit.ApiRet
 import com.mhl.meditation.retroshit.MyRetrofit
 import retrofit2.Call
@@ -30,9 +32,12 @@ class HomeFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val feelRecycler : RecyclerView = root.findViewById(R.id.feelings_recycle)
+        val stateRecycler : RecyclerView = root.findViewById(R.id.state_recycle)
         val retrofit = MyRetrofit().getRetrofit()
         val retroApi = retrofit.create(ApiRet::class.java)
         val callFeel : Call<feel> = retroApi.getFeelings()
+        val callQuotes : Call<quotes> = retroApi.getQuotes()
+
         callFeel.enqueue(object : Callback<feel>{
             override fun onResponse(call: Call<feel>, response: Response<feel>) {
                 if (response.isSuccessful){
@@ -45,6 +50,17 @@ class HomeFragment : Fragment() {
                 Log.d("TAAAG", t.message.toString())
             }
 
+        })
+        callQuotes.enqueue(object : Callback<quotes>{
+            override fun onResponse(call: Call<quotes>, response: Response<quotes>) {
+                if (response.isSuccessful){
+                    stateRecycler.adapter =
+                        response.body()?.let { StateRecycler(requireContext(), it) }
+                }
+            }
+
+            override fun onFailure(call: Call<quotes>, t: Throwable) {
+            }
         })
         return root
     }
