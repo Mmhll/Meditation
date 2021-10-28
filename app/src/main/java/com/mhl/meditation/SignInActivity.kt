@@ -40,7 +40,6 @@ class SignInActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<login>, response: Response<login>) {
                     if (response.isSuccessful){
                         val intent = Intent(this@SignInActivity, MenuActivity::class.java)
-                        intent.putExtra("NICK", response.let {login.})
                         startActivity(intent)
                     }
                 }
