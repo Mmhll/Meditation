@@ -12,12 +12,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.mhl.meditation.R
 import com.mhl.meditation.databinding.FragmentHomeBinding
-import com.mhl.meditation.recadapters.FeelRecycler
-import com.mhl.meditation.recadapters.StateRecycler
-import com.mhl.meditation.recadapters.feel
-import com.mhl.meditation.recadapters.quotes
+import com.mhl.meditation.recadapters.*
 import com.mhl.meditation.retroshit.ApiRet
 import com.mhl.meditation.retroshit.MyRetrofit
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,12 +30,12 @@ class HomeFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         val feelRecycler : RecyclerView = root.findViewById(R.id.feelings_recycle)
+        val nickname : TextView = root.findViewById(R.id.textNick)
         val stateRecycler : RecyclerView = root.findViewById(R.id.state_recycle)
         val retrofit = MyRetrofit().getRetrofit()
         val retroApi = retrofit.create(ApiRet::class.java)
         val callFeel : Call<feel> = retroApi.getFeelings()
         val callQuotes : Call<quotes> = retroApi.getQuotes()
-
         callFeel.enqueue(object : Callback<feel>{
             override fun onResponse(call: Call<feel>, response: Response<feel>) {
                 if (response.isSuccessful){
