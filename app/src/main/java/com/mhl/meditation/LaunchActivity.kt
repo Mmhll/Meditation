@@ -11,7 +11,6 @@ class LaunchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_launch)
         val timer = object : CountDownTimer(3000, 1000){
             override fun onTick(p0: Long) {
-
             }
 
             override fun onFinish() {

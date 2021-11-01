@@ -3,9 +3,11 @@ package com.mhl.meditation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.mhl.meditation.recadapters.login
 import com.mhl.meditation.retroshit.ApiRet
@@ -13,6 +15,8 @@ import com.mhl.meditation.retroshit.MyRetrofit
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.lang.Exception
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var loginText : EditText
@@ -40,6 +44,7 @@ class SignInActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<login>, response: Response<login>) {
                     if (response.isSuccessful){
                         val intent = Intent(this@SignInActivity, MenuActivity::class.java)
+
                         startActivity(intent)
                     }
                 }

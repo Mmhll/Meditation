@@ -1,6 +1,7 @@
 package com.mhl.meditation
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -8,6 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mhl.meditation.databinding.ActivityMenuBinding
+import com.mhl.meditation.recadapters.login
+import java.lang.Exception
 
 class MenuActivity : AppCompatActivity() {
 

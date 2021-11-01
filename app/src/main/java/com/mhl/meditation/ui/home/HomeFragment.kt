@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.mhl.meditation.R
 import com.mhl.meditation.databinding.FragmentHomeBinding
+import com.mhl.meditation.extras
 import com.mhl.meditation.recadapters.*
 import com.mhl.meditation.retroshit.ApiRet
 import com.mhl.meditation.retroshit.MyRetrofit
@@ -60,6 +61,7 @@ class HomeFragment : Fragment() {
             override fun onFailure(call: Call<quotes>, t: Throwable) {
             }
         })
+
         return root
     }
 }
